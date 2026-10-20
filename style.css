@@ -2684,3 +2684,181 @@ body.dark-mode #themeToggle {
         color: #e2e8f0 !important;
     }
 }
+/* =========================
+   THEME + MOBILE FIX
+========================= */
+
+/* Smooth theme transition */
+body,
+.navbar,
+nav,
+.about-card,
+.timeline-card,
+.skill-card,
+.project-card,
+.achievement-card,
+.certificate-card,
+.footer {
+    transition: background-color 0.25s ease, color 0.25s ease,
+                border-color 0.25s ease;
+}
+
+/* DARK MODE */
+body.dark-mode {
+    --background: #0b1120;
+    --surface: #151f32;
+    --text: #e2e8f0;
+    --muted: #c0ccdc;
+    --border: #29364a;
+    --navy: #e2e8f0;
+    --blue-light: #1c3048;
+    background: var(--background);
+    color: var(--text);
+}
+
+body.dark-mode .navbar,
+body.dark-mode .footer {
+    background: #0b1120;
+    border-color: #29364a;
+}
+
+body.dark-mode nav {
+    background: #0b1120;
+}
+
+body.dark-mode nav a,
+body.dark-mode .social-links a,
+body.dark-mode .footer p,
+body.dark-mode .footer a {
+    color: #dbe5f2;
+}
+
+body.dark-mode .hero {
+    background:
+        radial-gradient(circle at 85% 30%, #26344d 0, transparent 35%),
+        #0b1120;
+}
+
+body.dark-mode .hero h1,
+body.dark-mode .section-heading h2,
+body.dark-mode .about-card h3,
+body.dark-mode .timeline-card h3,
+body.dark-mode .skill-card h3,
+body.dark-mode .project-card h3 {
+    color: #e7edf7;
+}
+
+body.dark-mode .hero h2,
+body.dark-mode .hero-description,
+body.dark-mode .about-card p,
+body.dark-mode .section-heading > p:last-child,
+body.dark-mode .timeline-card p,
+body.dark-mode .skill-card p,
+body.dark-mode .project-card > p,
+body.dark-mode .project-note {
+    color: #c0ccdc;
+}
+
+body.dark-mode .section-soft {
+    background: #101827;
+}
+
+body.dark-mode .about-card,
+body.dark-mode .timeline-card,
+body.dark-mode .skill-card,
+body.dark-mode .project-card {
+    background: #151f32;
+    border-color: #2c3b52;
+}
+
+body.dark-mode .achievement-card,
+body.dark-mode .certificate-card {
+    background: #151f32;
+    color: #e2e8f0;
+}
+
+body.dark-mode .achievement-card p,
+body.dark-mode .certificate-info p {
+    color: #c0ccdc;
+    opacity: 1;
+}
+
+body.dark-mode .certificate-image {
+    background: #101827;
+}
+
+body.dark-mode .btn-outline {
+    background: #151f32;
+    color: #f1f5f9;
+    border-color: #64748b;
+}
+
+body.dark-mode .btn-outline:hover {
+    border-color: #38bdf8;
+    color: #38bdf8;
+}
+
+body.dark-mode .section-heading .eyebrow,
+body.dark-mode .timeline-card .muted {
+    color: #c0ccdc;
+}
+
+/* MOBILE NAVIGATION + LAYOUT */
+@media (max-width: 760px) {
+    .nav-container {
+        position: relative;
+    }
+
+    nav {
+        z-index: 1001;
+        max-height: calc(100vh - 80px);
+        overflow-y: auto;
+    }
+
+    nav a {
+        display: block;
+        padding: 8px 0;
+        font-size: 14px;
+    }
+
+    nav .nav-button {
+        text-align: center;
+        padding: 12px 16px;
+    }
+
+    nav #themeToggle {
+        align-self: flex-start;
+        min-width: 44px;
+        min-height: 44px;
+    }
+
+    .hero-container {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 25px;
+    }
+
+    .hero h1 {
+        font-size: clamp(32px, 8vw, 42px);
+        overflow-wrap: anywhere;
+    }
+
+    .hero-description {
+        overflow-wrap: anywhere;
+    }
+
+    .hero-buttons .btn {
+        max-width: 100%;
+    }
+
+    #ai-chat-window {
+        right: 12px;
+        bottom: 82px;
+        width: min(320px, calc(100vw - 24px));
+        max-width: none;
+    }
+
+    #ai-chat-bubble {
+        right: 16px;
+        bottom: 16px;
+    }
+}
