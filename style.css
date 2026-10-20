@@ -1272,4 +1272,14 @@ body.dark-mode .theme-toggle {
     background: #243149;
     border-color: #40516b;
 }
-
+/* Mobile view fix */
+@media (max-width: 768px) {
+    #themeToggle {
+        width: 40px;
+        height: 40px;
+        padding: 5px;
+        margin: 8px 0;
+        font-size: 18px;
+        flex-shrink: 0;
+    }
+}
