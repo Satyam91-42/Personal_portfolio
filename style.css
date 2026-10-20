@@ -1077,6 +1077,142 @@ nav .nav-button:hover {
 
 }
 
+/* AI Chatbot Styles */
+#ai-chat-bubble {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  width: 55px;
+  height: 55px;
+  background: #2563eb;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+  z-index: 1000;
+  transition: transform 0.2s ease;
+}
+
+#ai-chat-bubble:hover {
+  transform: scale(1.08);
+}
+
+#ai-chat-window {
+  position: fixed;
+  bottom: 90px;
+  right: 25px;
+  width: 320px;
+  max-width: 90vw;
+  height: 420px;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 1000;
+  font-family: inherit;
+  border: 1px solid #e2e8f0;
+}
+
+.chat-hidden {
+  display: none !important;
+}
+
+.chat-header {
+  background: #2563eb;
+  color: #ffffff;
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  background: #22c55e;
+  border-radius: 50%;
+}
+
+.close-btn {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.chat-messages {
+  flex: 1;
+  padding: 14px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 13.5px;
+  line-height: 1.4;
+  background: #f8fafc;
+}
+
+.bot-msg, .user-msg {
+  max-width: 80%;
+  padding: 8px 12px;
+  border-radius: 10px;
+}
+
+.bot-msg {
+  background: #e2e8f0;
+  color: #1e293b;
+  align-self: flex-start;
+  border-bottom-left-radius: 2px;
+}
+
+.user-msg {
+  background: #2563eb;
+  color: #ffffff;
+  align-self: flex-end;
+  border-bottom-right-radius: 2px;
+}
+
+.chat-input-area {
+  display: flex;
+  padding: 8px;
+  border-top: 1px solid #e2e8f0;
+  background: #ffffff;
+}
+
+.chat-input-area input {
+  flex: 1;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 8px 10px;
+  outline: none;
+  font-size: 13px;
+}
+
+.chat-input-area button {
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 14px;
+  margin-left: 6px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
 
 /* =========================
    SMALL MOBILE
