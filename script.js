@@ -129,3 +129,16 @@ function sendChatMessage() {
     msgContainer.scrollTop = msgContainer.scrollHeight;
   }, 400);
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+    const btn = document.getElementById("themeToggle");
+
+    if (!btn) return;
+
+    btn.addEventListener("click", function () {
+        document.body.classList.toggle("dark-mode");
+
+        const dark = document.body.classList.contains("dark-mode");
+        btn.textContent = dark ? "☀️" : "🌙";
+    });
+});
