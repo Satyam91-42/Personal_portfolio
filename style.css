@@ -1213,102 +1213,28 @@ nav .nav-button:hover {
   font-size: 13px;
 }
 
-/* Dark / Light Mode Button */
-.theme-toggle {
-    width: 44px;
-    height: 44px;
-    margin-left: 8px;
-    border: 1px solid var(--border);
-    border-radius: 50%;
-    background: var(--surface);
-    color: var(--text);
-    font-size: 21px;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    transition: 0.3s ease;
-}
-
-.theme-toggle:hover {
-    transform: rotate(15deg) scale(1.08);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
-}
-
-/* Dark theme colors */
-body.dark-mode {
-    --background: #0b1120;
-    --surface: #151f32;
-    --text: #e5edf8;
-    --muted: #a5b4c8;
-    --border: #29364a;
-    --navy: #e5edf8;
-    --blue-light: #1b2940;
-    --shadow: 0 10px 35px rgba(0, 0, 0, 0.25);
-}
-
-body.dark-mode .navbar {
-    background: rgba(11, 17, 32, 0.97);
-}
-
-body.dark-mode .section-soft {
-    background: #111a2b;
-}
-
-body.dark-mode .hero {
-    background: radial-gradient(
-        circle at 85% 30%,
-        #1b2940 0,
-        transparent 45%
-    ), var(--background);
-}
-
-body.dark-mode .hero h2 {
-    color: var(--muted);
-}
-
-body.dark-mode .theme-toggle {
-    background: #243149;
-    border-color: #40516b;
-}
-/* Mobile view fix */
-@media (max-width: 768px) {
-    #themeToggle {
-        width: 40px;
-        height: 40px;
-        padding: 5px;
-        margin: 8px 0;
-        font-size: 18px;
-        flex-shrink: 0;
-    }
-}
-
-/* Dark mode button - final size fix */
+/* Dark Mode Button */
 #themeToggle {
+    width: 44px !important;
+    height: 44px !important;
+    min-width: 44px !important;
+    padding: 0 !important;
+    margin-left: 12px !important;
+    border: 1px solid #d1d5db !important;
+    border-radius: 50% !important;
+    background: #f1f5f9 !important;
+    font-size: 21px !important;
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
-    width: 44px !important;
-    min-width: 44px !important;
-    max-width: 44px !important;
-    height: 44px !important;
-    min-height: 44px !important;
-    max-height: 44px !important;
-    padding: 0 !important;
-    margin: 0 0 0 12px !important;
-    border-radius: 50% !important;
+    flex-shrink: 0 !important;
+    cursor: pointer !important;
     box-sizing: border-box !important;
-    flex: 0 0 44px !important;
-    font-size: 21px !important;
-    line-height: 1 !important;
-    cursor: pointer;
 }
 
-/* Mobile menu fix */
 @media (max-width: 768px) {
     #themeToggle {
+        margin: 12px 0 !important;
         align-self: flex-start !important;
-        margin: 12px 0 0 0 !important;
     }
 }
