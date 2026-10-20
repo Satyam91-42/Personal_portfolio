@@ -1283,3 +1283,32 @@ body.dark-mode .theme-toggle {
         flex-shrink: 0;
     }
 }
+
+/* Dark mode button - final size fix */
+#themeToggle {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 44px !important;
+    min-width: 44px !important;
+    max-width: 44px !important;
+    height: 44px !important;
+    min-height: 44px !important;
+    max-height: 44px !important;
+    padding: 0 !important;
+    margin: 0 0 0 12px !important;
+    border-radius: 50% !important;
+    box-sizing: border-box !important;
+    flex: 0 0 44px !important;
+    font-size: 21px !important;
+    line-height: 1 !important;
+    cursor: pointer;
+}
+
+/* Mobile menu fix */
+@media (max-width: 768px) {
+    #themeToggle {
+        align-self: flex-start !important;
+        margin: 12px 0 0 0 !important;
+    }
+}
