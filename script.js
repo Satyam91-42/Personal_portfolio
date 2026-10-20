@@ -130,74 +130,89 @@ function sendChatMessage() {
   }, 400);
 }
 
-// 1. Screen se copy ki hui key yahan paste karein:
+// 1. Apni copied API key yahan paste karein:
 const GEMINI_API_KEY = "AQ.Ab8RN6Idrv1iNw8vscXBHYUCCODLq3dDodz6nUyBN6VVIhoZfg";
 
-// Chat window open/close
+// Chat window show/hide toggle
 function toggleChat() {
   const chatWin = document.getElementById("ai-chat-window");
-  chatWin.classList.toggle("chat-hidden");
+  if (chatWin) {
+    chatWin.classList.toggle("chat-hidden");
+  }
 }
 
-// Enter key press karne par send
+// Enter press karne par message bhejein
 function handleChatKey(event) {
   if (event.key === "Enter") {
     sendChatMessage();
   }
 }
 
-// Satyam ke portfolio ka complete context (AI isi basis par jawab dega)
-const SATYAM_SYSTEM_PROMPT = `
-You are the personal AI chatbot on Satyam Kumar Jha's developer portfolio website.
-About Satyam:
-- Name: Satyam Kumar Jha
-- Education: Bachelor of Computer Applications (BCA) at Lovely Professional University (LPU), focusing on Cloud Computing.
-- 12th: SNKN College Bhirha, Samastipur (BSEB, Science).
-- Technical Skills: Python, Java, C++, JavaScript, HTML5, CSS3, SQL.
-- Cloud & Tools: AWS fundamentals, Git, GitHub, VS Code.
-- Notable Projects:
-  1. Cloud-Based Application (Deployment & Scalability).
-  2. Developer Portfolio Website.
-  3. Student Management System (Python & SQL).
-- Certifications: AWS Cloud Technical Essentials (Coursera), Python Data Structures & Programming for Everybody (Coursera), Cloud Computing Fundamentals (IBM SkillsBuild).
-- GitHub: https://github.com/satyam91-42
-
-Behavior Rules:
-- Answer visitors politely, professionally, and crisply in English or Hinglish depending on how the user asks.
-- Only answer questions relevant to Satyam's career, education, skills, projects, and contact info.
-- If asked about contacting him, direct them to his GitHub or the email/contact section on the site.
+// System context: AI Satyam ke profile ki specifics hi answer karega
+const SYSTEM_INSTRUCTION = `
+You are the AI portfolio assistant for Satyam Kumar Jha.
+Profile context:
+- Full Name: Satyam Kumar Jha
+- Current Degree: BCA (Bachelor of Computer Applications) at Lovely Professional University (LPU), focusing on Cloud Computing and Software Development.
+- Higher Secondary (12th): SNKN College Bhirha Samastipur (BSEB Science, 2026).
+- Technical Skills:
+  - Programming: Python, Java, C++
+  - Web & DB: HTML, CSS, JavaScript, SQL (Relational DBs)
+  - Cloud & Tools: Cloud Fundamentals, Deployment, Git, GitHub, Visual Studio Code
+- Featured Projects:
+  1. Cloud-Based Application (Exploring cloud hosting, scalability, and infrastructure)
+  2. Personal Portfolio Website (Responsive portfolio built with HTML, CSS, JS)
+  3. Student Management System (Python & SQL for academic records)
+- Certifications:
+  - AWS Cloud Technical Essentials (Coursera)
+  - Programming for Everybody & Python Data Structures (Coursera)
+  - Cloud Computing Fundamentals (IBM SkillsBuild)
+- Important Links:
+  - GitHub: https://github.com/satyam91-42
+- Tone & Rules:
+  - Answer naturally in the user's language (English or Hindi/Hinglish).
+  - Keep answers concise, clear, and focused on Satyam's career, education, and skills.
+  - For hiring or collaborations, suggest using the Contact Me / Email button or GitHub.
 `;
 
-// Gemini API Call Function
-async function callGemini(userText) {
-  const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
-  
+// Direct Gemini API Call Function
+async function callGeminiAPI(userQuery) {
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`;
+
   const payload = {
+    system_instruction: {
+      parts: [{ text: SYSTEM_INSTRUCTION }]
+    },
     contents: [
       {
         role: "user",
-        parts: [
-          { text: `${SATYAM_SYSTEM_PROMPT}\n\nVisitor Question: ${userText}` }
-        ]
+        parts: [{ text: userQuery }]
       }
-    ]
+    ],
+    generationConfig: {
+      temperature: 0.6,
+      maxOutputTokens: 250
+    }
   };
 
-  const res = await fetch(endpoint, {
+  const response = await fetch(url, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json"
+    },
     body: JSON.stringify(payload)
   });
 
-  if (!res.ok) {
-    throw new Error(`API error: ${res.status}`);
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.error?.message || `HTTP ${response.status}`);
   }
 
-  const data = await res.json();
+  const data = await response.json();
   return data.candidates[0].content.parts[0].text;
 }
 
-// Send Message Handler
+// Message Send Handler
 async function sendChatMessage() {
   const input = document.getElementById("chat-user-input");
   const msgContainer = document.getElementById("chat-messages");
@@ -205,7 +220,7 @@ async function sendChatMessage() {
 
   if (!text) return;
 
-  // Visitor message screen par add karein
+  // Append user bubble
   const userDiv = document.createElement("div");
   userDiv.className = "user-msg";
   userDiv.innerText = text;
@@ -213,7 +228,7 @@ async function sendChatMessage() {
   input.value = "";
   msgContainer.scrollTop = msgContainer.scrollHeight;
 
-  // Bot loading placeholder
+  // Append bot bubble placeholder
   const botDiv = document.createElement("div");
   botDiv.className = "bot-msg";
   botDiv.innerText = "Soch raha hoon...";
@@ -221,15 +236,13 @@ async function sendChatMessage() {
   msgContainer.scrollTop = msgContainer.scrollHeight;
 
   try {
-    const aiReply = await callGemini(text);
-    botDiv.innerText = aiReply;
+    const botReply = await callGeminiAPI(text);
+    botDiv.innerText = botReply;
   } catch (err) {
-    botDiv.innerText = "Maaf kijiye, abhi response connect nahi ho paya. Kripya thodi der baad try karein ya Contact form use karein.";
-    console.error(err);
+    botDiv.innerText = "Error: API response connect nahi hua (" + err.message + "). Kripya API key aur network check karein.";
+    console.error("Chatbot Error:", err);
   }
 
   msgContainer.scrollTop = msgContainer.scrollHeight;
 }
-        
-
 
