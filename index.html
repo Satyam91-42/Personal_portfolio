@@ -623,6 +623,26 @@
 
         <div class="certifications-grid">
 
+               <article class="certificate-card">
+
+                <div class="certificate-image">
+                    <img src="images/0_image.jpg.jpg"
+                         alt="Cloud Computing Certificate">
+                </div>
+
+                <div class="certificate-info">
+                    <h3>Coursera</h3>
+                    <p>Programming For Everybody.</p>
+                    <a href="images/0_image.jpg.jpg"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        View Certificate ↗
+                    </a>
+                </div>
+
+            </article>
+
+
             <!-- CERTIFICATE 1 -->
             <article class="certificate-card">
 
@@ -779,6 +799,32 @@
 
 
     <script src="script.js"></script>
+
+    <!-- Floating AI Chatbot Button & Window -->
+<div id="ai-chat-bubble" onclick="toggleChat()">
+  💬
+</div>
+
+<div id="ai-chat-window" class="chat-hidden">
+  <div class="chat-header">
+    <div class="header-info">
+      <span class="status-dot"></span>
+      <strong>Satyam's AI Assistant</strong>
+    </div>
+    <button onclick="toggleChat()" class="close-btn">&times;</button>
+  </div>
+  
+  <div class="chat-messages" id="chat-messages">
+    <div class="bot-msg">
+      Namaste! Main Satyam ka personal portfolio assistant hoon. Aap mujhse unke projects, skills, certifications ya contact info ke baare mein pooch sakte hain!
+    </div>
+  </div>
+
+  <div class="chat-input-area">
+    <input type="text" id="chat-user-input" placeholder="Poochiye (e.g. skills, projects)..." onkeydown="handleChatKey(event)" />
+    <button onclick="sendChatMessage()">Send</button>
+  </div>
+</div>
 
 </body>
 
