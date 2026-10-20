@@ -129,3 +129,41 @@ function sendChatMessage() {
     msgContainer.scrollTop = msgContainer.scrollHeight;
   }, 400);
 }
+
+// Dark / Light Mode Toggle
+const themeToggle = document.getElementById("themeToggle");
+
+if (themeToggle) {
+    // Load saved theme
+    const savedTheme = localStorage.getItem("portfolio-theme");
+
+    if (savedTheme === "dark") {
+        document.body.classList.add("dark-mode");
+    }
+
+    updateThemeButton();
+
+    themeToggle.addEventListener("click", function () {
+        document.body.classList.toggle("dark-mode");
+
+        const isDark = document.body.classList.contains("dark-mode");
+
+        localStorage.setItem(
+            "portfolio-theme",
+            isDark ? "dark" : "light"
+        );
+
+        updateThemeButton();
+    });
+
+    function updateThemeButton() {
+        const isDark = document.body.classList.contains("dark-mode");
+
+        themeToggle.textContent = isDark ? "☀️" : "🌙";
+        themeToggle.setAttribute(
+            "aria-label",
+            isDark ? "Switch to light mode" : "Switch to dark mode"
+        );
+        themeToggle.title = isDark ? "Light Mode" : "Dark Mode";
+    }
+}
