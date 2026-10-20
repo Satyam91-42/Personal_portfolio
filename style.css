@@ -2862,3 +2862,47 @@ body.dark-mode .timeline-card .muted {
         bottom: 16px;
     }
 }
+
+/* FIX: faded text in hero section */
+.hero .btn-outline {
+    background: #ffffff !important;
+    color: #142b4a !important;
+    border: 1px solid #cbd5e1 !important;
+    opacity: 1 !important;
+    text-shadow: none !important;
+}
+
+.hero .floating-card {
+    background: #ffffff !important;
+    color: #142b4a !important;
+    opacity: 1 !important;
+}
+
+.hero .floating-card * {
+    color: #142b4a !important;
+    opacity: 1 !important;
+}
+
+/* Mobile navbar readability */
+@media (max-width: 760px) {
+    .nav-container {
+        flex-wrap: wrap;
+    }
+
+    nav {
+        gap: 12px !important;
+    }
+
+    nav a {
+        font-size: 14px !important;
+        color: #253247 !important;
+    }
+
+    body.dark-mode nav {
+        background: #0b1120 !important;
+    }
+
+    body.dark-mode nav a {
+        color: #e2e8f0 !important;
+    }
+}
