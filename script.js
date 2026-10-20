@@ -142,3 +142,25 @@ document.addEventListener("DOMContentLoaded", function () {
         btn.textContent = dark ? "☀️" : "🌙";
     });
 });
+document.addEventListener("DOMContentLoaded", function () {
+    const btn = document.getElementById("themeToggle");
+
+    if (!btn) return;
+
+    btn.onclick = function () {
+        const isDark = document.body.classList.toggle("dark-mode");
+
+        btn.textContent = isDark ? "☀️" : "🌙";
+        localStorage.setItem("portfolio-theme", isDark ? "dark" : "light");
+    };
+
+    const savedTheme = localStorage.getItem("portfolio-theme");
+
+    if (savedTheme === "dark") {
+        document.body.classList.add("dark-mode");
+        btn.textContent = "☀️";
+    } else {
+        document.body.classList.remove("dark-mode");
+        btn.textContent = "🌙";
+    }
+});
