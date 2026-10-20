@@ -129,38 +129,25 @@ function sendChatMessage() {
     msgContainer.scrollTop = msgContainer.scrollHeight;
   }, 400);
 }
-
-document.addEventListener("DOMContentLoaded", function () {
+/* ===== DARK MODE TOGGLE ===== */
+(function () {
     const btn = document.getElementById("themeToggle");
-
     if (!btn) return;
 
-    btn.addEventListener("click", function () {
-        document.body.classList.toggle("dark-mode");
-
-        const dark = document.body.classList.contains("dark-mode");
-        btn.textContent = dark ? "☀️" : "🌙";
-    });
-});
-document.addEventListener("DOMContentLoaded", function () {
-    const btn = document.getElementById("themeToggle");
-
-    if (!btn) return;
-
-    btn.onclick = function () {
-        const isDark = document.body.classList.toggle("dark-mode");
-
+    function applyTheme(isDark) {
+        document.body.classList.toggle("dark-mode", isDark);
         btn.textContent = isDark ? "☀️" : "🌙";
         localStorage.setItem("portfolio-theme", isDark ? "dark" : "light");
-    };
-
-    const savedTheme = localStorage.getItem("portfolio-theme");
-
-    if (savedTheme === "dark") {
-        document.body.classList.add("dark-mode");
-        btn.textContent = "☀️";
-    } else {
-        document.body.classList.remove("dark-mode");
-        btn.textContent = "🌙";
+        btn.setAttribute(
+            "aria-label",
+            isDark ? "Switch to light mode" : "Switch to dark mode"
+        );
     }
-});
+
+    applyTheme(localStorage.getItem("portfolio-theme") === "dark");
+
+    btn.addEventListener("click", function () {
+        applyTheme(!document.body.classList.contains("dark-mode"));
+    });
+})();
+
