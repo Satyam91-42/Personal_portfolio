@@ -1213,6 +1213,60 @@ nav .nav-button:hover {
   font-size: 13px;
 }
 
+/* Mini Compact Theme Button */
+.mini-theme-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  width: 34px;           /* Chhota aur compact size */
+  height: 34px;
+  font-size: 15px;       /* Subtle icon size */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  margin-right: 10px;    /* Hamburger menu se safe distance */
+  vertical-align: middle;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.mini-theme-btn:hover {
+  transform: translateY(-1px) scale(1.05);
+  background: rgba(255, 255, 255, 0.18);
+  border-color: #38bdf8;
+}
+
+/* Light Mode Overrides */
+body.light-theme {
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+}
+
+body.light-theme header,
+body.light-theme nav,
+body.light-theme .card,
+body.light-theme .project-card,
+body.light-theme .cert-card,
+body.light-theme div[class*="card"] {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
+}
+
+body.light-theme h1,
+body.light-theme h2,
+body.light-theme h3,
+body.light-theme p,
+body.light-theme span {
+  color: #0f172a !important;
+}
+
+body.light-theme .mini-theme-btn {
+  background: #e2e8f0;
+  border-color: #cbd5e1;
+}
 
 /* =========================
    SMALL MOBILE
@@ -1234,4 +1288,3 @@ nav .nav-button:hover {
     }
 
 }
-
