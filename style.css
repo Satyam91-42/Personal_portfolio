@@ -1213,3 +1213,63 @@ nav .nav-button:hover {
   font-size: 13px;
 }
 
+/* Dark / Light Mode Button */
+.theme-toggle {
+    width: 44px;
+    height: 44px;
+    margin-left: 8px;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    background: var(--surface);
+    color: var(--text);
+    font-size: 21px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: 0.3s ease;
+}
+
+.theme-toggle:hover {
+    transform: rotate(15deg) scale(1.08);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+}
+
+/* Dark theme colors */
+body.dark-mode {
+    --background: #0b1120;
+    --surface: #151f32;
+    --text: #e5edf8;
+    --muted: #a5b4c8;
+    --border: #29364a;
+    --navy: #e5edf8;
+    --blue-light: #1b2940;
+    --shadow: 0 10px 35px rgba(0, 0, 0, 0.25);
+}
+
+body.dark-mode .navbar {
+    background: rgba(11, 17, 32, 0.97);
+}
+
+body.dark-mode .section-soft {
+    background: #111a2b;
+}
+
+body.dark-mode .hero {
+    background: radial-gradient(
+        circle at 85% 30%,
+        #1b2940 0,
+        transparent 45%
+    ), var(--background);
+}
+
+body.dark-mode .hero h2 {
+    color: var(--muted);
+}
+
+body.dark-mode .theme-toggle {
+    background: #243149;
+    border-color: #40516b;
+}
+
