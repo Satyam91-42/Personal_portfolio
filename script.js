@@ -131,7 +131,7 @@ function sendChatMessage() {
 }
 
 // 1. Apni copied API key yahan paste karein:
-const GEMINI_API_KEY = "AQ.Ab8RN6Idrv1iNw8vscXBHYUCCODLq3dDodz6nUyBN6VVIhoZfg";
+const GEMINI_API_KEY = "AQ.Ab8RN6IJfh1qqOzSZEHDdug2a8fPddSpRcIiQ4RXMbgywyemig";
 
 // Chat window show/hide toggle
 function toggleChat() {
