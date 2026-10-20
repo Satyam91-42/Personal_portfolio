@@ -129,6 +129,107 @@ function sendChatMessage() {
     msgContainer.scrollTop = msgContainer.scrollHeight;
   }, 400);
 }
+
+// 1. Screen se copy ki hui key yahan paste karein:
+const GEMINI_API_KEY = "AQ.Ab8RN6Idrv1iNw8vscXBHYUCCODLq3dDodz6nUyBN6VVIhoZfg";
+
+// Chat window open/close
+function toggleChat() {
+  const chatWin = document.getElementById("ai-chat-window");
+  chatWin.classList.toggle("chat-hidden");
+}
+
+// Enter key press karne par send
+function handleChatKey(event) {
+  if (event.key === "Enter") {
+    sendChatMessage();
+  }
+}
+
+// Satyam ke portfolio ka complete context (AI isi basis par jawab dega)
+const SATYAM_SYSTEM_PROMPT = `
+You are the personal AI chatbot on Satyam Kumar Jha's developer portfolio website.
+About Satyam:
+- Name: Satyam Kumar Jha
+- Education: Bachelor of Computer Applications (BCA) at Lovely Professional University (LPU), focusing on Cloud Computing.
+- 12th: SNKN College Bhirha, Samastipur (BSEB, Science).
+- Technical Skills: Python, Java, C++, JavaScript, HTML5, CSS3, SQL.
+- Cloud & Tools: AWS fundamentals, Git, GitHub, VS Code.
+- Notable Projects:
+  1. Cloud-Based Application (Deployment & Scalability).
+  2. Developer Portfolio Website.
+  3. Student Management System (Python & SQL).
+- Certifications: AWS Cloud Technical Essentials (Coursera), Python Data Structures & Programming for Everybody (Coursera), Cloud Computing Fundamentals (IBM SkillsBuild).
+- GitHub: https://github.com/satyam91-42
+
+Behavior Rules:
+- Answer visitors politely, professionally, and crisply in English or Hinglish depending on how the user asks.
+- Only answer questions relevant to Satyam's career, education, skills, projects, and contact info.
+- If asked about contacting him, direct them to his GitHub or the email/contact section on the site.
+`;
+
+// Gemini API Call Function
+async function callGemini(userText) {
+  const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
+  
+  const payload = {
+    contents: [
+      {
+        role: "user",
+        parts: [
+          { text: `${SATYAM_SYSTEM_PROMPT}\n\nVisitor Question: ${userText}` }
+        ]
+      }
+    ]
+  };
+
+  const res = await fetch(endpoint, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload)
+  });
+
+  if (!res.ok) {
+    throw new Error(`API error: ${res.status}`);
+  }
+
+  const data = await res.json();
+  return data.candidates[0].content.parts[0].text;
+}
+
+// Send Message Handler
+async function sendChatMessage() {
+  const input = document.getElementById("chat-user-input");
+  const msgContainer = document.getElementById("chat-messages");
+  const text = input.value.trim();
+
+  if (!text) return;
+
+  // Visitor message screen par add karein
+  const userDiv = document.createElement("div");
+  userDiv.className = "user-msg";
+  userDiv.innerText = text;
+  msgContainer.appendChild(userDiv);
+  input.value = "";
+  msgContainer.scrollTop = msgContainer.scrollHeight;
+
+  // Bot loading placeholder
+  const botDiv = document.createElement("div");
+  botDiv.className = "bot-msg";
+  botDiv.innerText = "Soch raha hoon...";
+  msgContainer.appendChild(botDiv);
+  msgContainer.scrollTop = msgContainer.scrollHeight;
+
+  try {
+    const aiReply = await callGemini(text);
+    botDiv.innerText = aiReply;
+  } catch (err) {
+    botDiv.innerText = "Maaf kijiye, abhi response connect nahi ho paya. Kripya thodi der baad try karein ya Contact form use karein.";
+    console.error(err);
+  }
+
+  msgContainer.scrollTop = msgContainer.scrollHeight;
+}
         
 
 
