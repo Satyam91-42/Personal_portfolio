@@ -1,152 +1,228 @@
+document.addEventListener("DOMContentLoaded", function () {
 
-// Select navigation elements
+    // ==============================
+    // 1. MOBILE NAVIGATION
+    // ==============================
+    const menuToggle = document.getElementById("menuToggle");
+    const navMenu = document.getElementById("navMenu");
 
-const menuToggle = document.getElementById("menuToggle");
-const navMenu = document.getElementById("navMenu");
+    if (menuToggle && navMenu) {
+        menuToggle.addEventListener("click", function () {
+            navMenu.classList.toggle("active");
 
+            const isOpen = navMenu.classList.contains("active");
+            menuToggle.setAttribute("aria-expanded", isOpen);
+        });
 
-// Mobile navigation menu
-
-menuToggle.addEventListener("click", function () {
-
-    const isOpen = navMenu.classList.toggle("active");
-
-    menuToggle.setAttribute("aria-expanded", isOpen);
-
-    menuToggle.textContent = isOpen ? "✕" : "☰";
-
-});
-
-
-// Close navigation after clicking a link
-
-document.querySelectorAll("#navMenu a").forEach(function (link) {
-
-    link.addEventListener("click", function () {
-
-        navMenu.classList.remove("active");
-
-        menuToggle.setAttribute("aria-expanded", "false");
-
-        menuToggle.textContent = "☰";
-
-    });
-
-});
-
-
-// Automatically update copyright year
-
-document.getElementById("year").textContent =
-    new Date().getFullYear();
-
-
-// Prevent placeholder project links from navigating to the top
-
-document.querySelectorAll(".project-placeholder").forEach(function (link) {
-
-    link.addEventListener("click", function (event) {
-
-        event.preventDefault();
-
-        alert("Please add your actual GitHub repository link here.");
-
-        
-
-    });
-
-        
-    
-
-});
-
-// Toggle Chat Window
-function toggleChat() {
-  const chatWin = document.getElementById("ai-chat-window");
-  chatWin.classList.toggle("chat-hidden");
-}
-
-function handleChatKey(event) {
-  if (event.key === "Enter") {
-    sendChatMessage();
-  }
-}
-
-// Knowledge Base & Smart Response Engine
-function getLocalAIResponse(query) {
-  const text = query.toLowerCase();
-
-  if (text.includes("skill") || text.includes("knowledge") || text.includes("technology")) {
-    return "Satyam ke core skills: Python, Java, C++, Cloud Fundamentals & Deployment concepts, Web Dev (HTML, CSS, JS), aur SQL Database management.";
-  }
-  
-  if (text.includes("project") || text.includes("work")) {
-    return "Featured Projects: \n1. Cloud-Based Application (Deployment & Scalability)\n2. Personal Portfolio Website\n3. Student Management System (Python & SQL).";
-  }
-
-  if (text.includes("education") || text.includes("college") || text.includes("degree") || text.includes("lpu")) {
-    return "Satyam abhi Lovely Professional University (LPU) se Bachelor of Computer Applications (BCA) kar rahe hain with focus on Cloud Computing.";
-  }
-
-  if (text.includes("certif") || text.includes("course")) {
-    return "Certifications:\n- AWS Cloud Technical Essentials (Coursera)\n- Programming For Everybody & Python Data Structures (Coursera)\n- Cloud Computing Fundamentals (IBM SkillsBuild).";
-  }
-
-  if (text.includes("contact") || text.includes("email") || text.includes("hire") || text.includes("reach")) {
-    return "Aap Satyam se page ke footer ya 'Contact Me' section ke through email aur LinkedIn par connect kar sakte hain!";
-  }
-
-  if (text.includes("hello") || text.includes("hi") || text.includes("hey")) {
-    return "Hello! What information would you like me to share about Satyam? (Skills, Projects, Education, or Certifications)";
-  }
-
-  return "I have limited information regarding that. To discuss this further or for any detailed queries, you can contact Satyam directly via Email or LinkedIn.";)
-
-function sendChatMessage() {
-  const input = document.getElementById("chat-user-input");
-  const msgContainer = document.getElementById("chat-messages");
-  const text = input.value.trim();
-
-  if (!text) return;
-
-  // Add User Message
-  const userDiv = document.createElement("div");
-  userDiv.className = "user-msg";
-  userDiv.innerText = text;
-  msgContainer.appendChild(userDiv);
-  input.value = "";
-
-  // Scroll to bottom
-  msgContainer.scrollTop = msgContainer.scrollHeight;
-
-  // Simulate Thinking & Reply
-  setTimeout(() => {
-    const botDiv = document.createElement("div");
-    botDiv.className = "bot-msg";
-    botDiv.innerText = getLocalAIResponse(text);
-    msgContainer.appendChild(botDiv);
-    msgContainer.scrollTop = msgContainer.scrollHeight;
-  }, 400);
-}
-/* ===== DARK MODE TOGGLE ===== */
-(function () {
-    const btn = document.getElementById("themeToggle");
-    if (!btn) return;
-
-    function applyTheme(isDark) {
-        document.body.classList.toggle("dark-mode", isDark);
-        btn.textContent = isDark ? "☀️" : "🌙";
-        localStorage.setItem("portfolio-theme", isDark ? "dark" : "light");
-        btn.setAttribute(
-            "aria-label",
-            isDark ? "Switch to light mode" : "Switch to dark mode"
-        );
+        navMenu.querySelectorAll("a").forEach(function (link) {
+            link.addEventListener("click", function () {
+                navMenu.classList.remove("active");
+                menuToggle.setAttribute("aria-expanded", "false");
+            });
+        });
     }
 
-    applyTheme(localStorage.getItem("portfolio-theme") === "dark");
 
-    btn.addEventListener("click", function () {
-        applyTheme(!document.body.classList.contains("dark-mode"));
+    // ==============================
+    // 2. DARK MODE
+    // ==============================
+    const themeToggle = document.getElementById("themeToggle");
+
+    if (themeToggle) {
+        let darkMode = false;
+
+        try {
+            darkMode = localStorage.getItem("portfolio-theme") === "dark";
+        } catch (error) {}
+
+        document.body.classList.toggle("dark-mode", darkMode);
+        themeToggle.textContent = darkMode ? "☀️" : "🌙";
+
+        themeToggle.addEventListener("click", function () {
+            document.body.classList.toggle("dark-mode");
+
+            const isDark = document.body.classList.contains("dark-mode");
+
+            themeToggle.textContent = isDark ? "☀️" : "🌙";
+            themeToggle.setAttribute(
+                "aria-label",
+                isDark ? "Switch to light mode" : "Switch to dark mode"
+            );
+
+            try {
+                localStorage.setItem(
+                    "portfolio-theme",
+                    isDark ? "dark" : "light"
+                );
+            } catch (error) {}
+        });
+    }
+
+
+    // ==============================
+    // 3. AUTOMATIC FOOTER YEAR
+    // ==============================
+    const yearElement = document.getElementById("year");
+
+    if (yearElement) {
+        yearElement.textContent = new Date().getFullYear();
+    }
+
+
+    // ==============================
+    // 4. PROJECT PLACEHOLDER LINKS
+    // ==============================
+    document.querySelectorAll(".project-link").forEach(function (link) {
+        const href = (link.getAttribute("href") || "").trim();
+
+        if (
+            href === "javascript:void(0)" ||
+            href === "#" ||
+            href === ""
+        ) {
+            link.addEventListener("click", function (event) {
+                event.preventDefault();
+                alert("This project link will be available soon!");
+            });
+        }
     });
-})();
 
+
+    // ==============================
+    // 5. CHATBOT ELEMENTS
+    // ==============================
+    const chatWindow = document.getElementById("ai-chat-window");
+    const chatInput = document.getElementById("chat-user-input");
+    const chatMessages = document.getElementById("chat-messages");
+
+
+    // Open and close chatbot
+    window.toggleChat = function () {
+        if (chatWindow) {
+            chatWindow.classList.toggle("chat-hidden");
+        }
+    };
+
+
+    // Send message using Enter key
+    window.handleChatKey = function (event) {
+        if (event && event.key === "Enter") {
+            event.preventDefault();
+            window.sendChatMessage();
+        }
+    };
+
+
+    // Add chatbot message
+    function addChatMessage(message, className) {
+        if (!chatMessages) return;
+
+        const messageElement = document.createElement("div");
+        messageElement.className = className;
+        messageElement.textContent = message;
+
+        chatMessages.appendChild(messageElement);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+
+    // ==============================
+    // 6. CHATBOT RESPONSE SYSTEM
+    // ==============================
+    function getLocalAIResponse(userMessage) {
+        const message = userMessage.toLowerCase();
+
+        if (
+            message.includes("hello") ||
+            message.includes("hi") ||
+            message.includes("hey") ||
+            message.includes("namaste")
+        ) {
+            return "Hello! Welcome to Satyam's portfolio. How can I help you?";
+        }
+
+        if (
+            message.includes("who are you") ||
+            message.includes("about")
+        ) {
+            return "I am Satyam's portfolio assistant. Satyam Kumar Jha is a BCA student at Lovely Professional University and is interested in cloud computing and software development.";
+        }
+
+        if (
+            message.includes("skill") ||
+            message.includes("technology")
+        ) {
+            return "Satyam is learning Python, Java, C++, HTML, CSS, JavaScript, SQL, cloud computing, Git and GitHub.";
+        }
+
+        if (message.includes("project")) {
+            return "Satyam's portfolio includes a Personal Portfolio Website and project concepts related to Cloud Computing and Student Management. Visit the Projects section to learn more.";
+        }
+
+        if (
+            message.includes("education") ||
+            message.includes("qualification") ||
+            message.includes("study")
+        ) {
+            return "Satyam is pursuing a Bachelor of Computer Applications (BCA) at Lovely Professional University. He completed his Higher Secondary Education in Science from SNKN College, Bhirha, Samastipur.";
+        }
+
+        if (
+            message.includes("contact") ||
+            message.includes("email") ||
+            message.includes("hire")
+        ) {
+            return "You can connect with Satyam through the GitHub and LinkedIn links on his portfolio, or visit the Contact section.";
+        }
+
+        if (
+            message.includes("certificate") ||
+            message.includes("certification")
+        ) {
+            return "Satyam's portfolio includes certificates related to Python, serverless applications, AWS Cloud and cloud computing fundamentals. Visit the Certifications section.";
+        }
+
+        if (
+            message.includes("achievement") ||
+            message.includes("award")
+        ) {
+            return "Satyam highlights hackathon participation, continuous learning and project development in the Achievements section.";
+        }
+
+        if (message.includes("github")) {
+            return "Satyam's GitHub profile is: github.com/Satyam91-42";
+        }
+
+        if (message.includes("linkedin")) {
+            return "You can connect with Satyam on LinkedIn through the LinkedIn link in the Home section.";
+        }
+
+        if (message.includes("thank")) {
+            return "You're welcome! Feel free to ask me anything else.";
+        }
+
+        return "Thanks for your question! You can explore the About, Education, Skills, Projects, Achievements and Certifications sections to learn more about Satyam.";
+    }
+
+
+    // ==============================
+    // 7. SEND CHATBOT MESSAGE
+    // ==============================
+    window.sendChatMessage = function () {
+        if (!chatInput || !chatMessages) return;
+
+        const userMessage = chatInput.value.trim();
+
+        if (userMessage === "") return;
+
+        addChatMessage(userMessage, "user-msg");
+        chatInput.value = "";
+
+        const response = getLocalAIResponse(userMessage);
+
+        window.setTimeout(function () {
+            addChatMessage(response, "bot-msg");
+        }, 400);
+    };
+
+});
