@@ -97,10 +97,10 @@ function getLocalAIResponse(query) {
   }
 
   if (text.includes("hello") || text.includes("hi") || text.includes("hey")) {
-    return "Hello! Main Satyam ke baare mein kya jankari share karoon? (Skills, Projects, Education ya Certifications)";
+    return "Hello! What information would you like me to share about Satyam? (Skills, Projects, Education, or Certifications)";
   }
 
-  return "Yeh sawal kafi interesting hai! Iske baare mein deep discuss karne ke liye aap page ke 'Contact Me' section se seedhe Satyam ko connect kar sakte hain.";
+  return "I have limited information regarding that. To discuss this further or for any detailed queries, you can contact Satyam directly via Email or LinkedIn.";
 }
 
 function sendChatMessage() {
