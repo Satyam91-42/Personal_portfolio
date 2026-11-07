@@ -2906,3 +2906,21 @@ body.dark-mode .timeline-card .muted {
         color: #e2e8f0 !important;
     }
 }
+/* ==============================
+   DARK MODE - CONTACT BUTTON FIX
+============================== */
+
+body.dark-mode .contact-card .btn-light {
+    background: #ffffff !important;
+    color: #142b4a !important;
+    border: 2px solid #ffffff !important;
+    opacity: 1 !important;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .contact-card .btn-light:hover {
+    background: #38bdf8 !important;
+    color: #08111f !important;
+    border-color: #38bdf8 !important;
+    transform: translateY(-3px);
+}
