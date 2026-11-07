@@ -801,8 +801,7 @@
 
 
     <script src="script.js"></script>
-
-   <!-- Floating AI Chatbot Button & Window -->
+<!-- Floating AI Chatbot Button & Window -->
 <div id="ai-chat-bubble" onclick="toggleChat()">
   🤖
 </div>
@@ -818,16 +817,19 @@
   
   <div class="chat-messages" id="chat-messages">
     <div class="bot-msg">
-     Hello! I'm Satyam's personal portfolio assistant. Feel free to ask me about his projects, technical skills, certifications, or contact information!
+      Hello! I'm Satyam's portfolio assistant. You can contact Satyam directly via <a href="https://www.linkedin.com/in/satyam-kumar183" target="_blank" style="color: #3b82f6; text-decoration: none;">LinkedIn</a> or <a href="sjha57786@gmail.com" style="color: #3b82f6; text-decoration: none;">Email</a>, or feel free to ask me about his projects, skills, and certifications!
     </div>
   </div>
 
   <div class="chat-input-area">
-    <input type="text" id="chat-user-input" placeholder="Poochiye (e.g. skills, projects)..." onkeydown="handleChatKey(event)" />
+    <input type="text" id="chat-user-input" placeholder="Type a message (e.g., skills, projects)..." onkeydown="handleChatKey(event)" />
     <button onclick="sendChatMessage()">Send</button>
   </div>
 </div>
-    
-</body>
 
-</html>
+<script>
+  // Chatbot Fallback / Default Response Function (Jab koi alag sawal puche)
+  function handleUnknownQuery() {
+    return "That's an interesting question! To discuss this in detail, you can contact Satyam directly through the contact section on this page or via LinkedIn.";
+  }
+</script>
