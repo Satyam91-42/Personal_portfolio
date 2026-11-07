@@ -100,7 +100,11 @@ function getLocalAIResponse(query) {
     return "Hello! What information would you like me to share about Satyam? (Skills, Projects, Education, or Certifications)";
   }
 
-  return "I have limited information regarding that. To discuss this further or for any detailed queries, you can contact Satyam directly via Email or LinkedIn.";
+  return "I have limited information regarding that. To discuss this further or for any detailed queries, you can contact Satyam directly via  <a href="mailto:sjha57786@gmail.com"
+                   class="btn btn-light">
+                    Send Me an Email
+                </a>
+ or LinkedIn.";
 }
 
 function sendChatMessage() {
