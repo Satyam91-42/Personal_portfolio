@@ -827,55 +827,56 @@
     <button onclick="sendChatMessage()">Send</button>
   </div>
 </div>
-<!-- === START: Live Visitor & Time Widget (Sirf Last me Paste Karein) === -->
-<div style="text-align: center; padding: 25px 0; margin-top: 40px; border-top: 1px solid rgba(0,0,0,0.1); font-family: sans-serif;">
+<!-- === START: Professional Footer Widget === -->
+<footer style="text-align: center; padding: 30px 20px; margin-top: 50px; border-top: 1px solid rgba(0,0,0,0.08); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
   
-  <!-- Live Greeting & Time -->
-  <p id="live-greeting" style="font-size: 14px; font-weight: 500; color: #555; margin-bottom: 10px;"></p>
-  
-  <!-- Live Visitor Counter Badge -->
-  <div style="display: inline-block;">
-    <span style="font-size: 12px; color: #777; display: block; margin-bottom: 4px;">👀 Total Portfolio Views</span>
-    <a href="https://github.com/satyam91-42/Personal_portfolio" target="_blank">
-      <img src="https://komarev.com/ghpvc/?username=satyam91-42&color=blueviolet&style=flat-square" alt="Visitor Count" />
-    </a>
+  <!-- Thank you & Quick Connect Message -->
+  <p style="font-size: 15px; font-weight: 500; color: #333; margin-bottom: 8px;">
+    🙏 Thanks for visiting my portfolio!
+  </p>
+  <p style="font-size: 13px; color: #666; margin-bottom: 15px;">
+    Have a project in mind or want to connect? Feel free to reach out.
+  </p>
+
+  <!-- Quick Email Button -->
+  <a href="sjha57786@gmail.com" style="display: inline-block; background-color: #007bff; color: #fff; padding: 8px 20px; border-radius: 20px; font-size: 13px; text-decoration: none; font-weight: 500; margin-bottom: 20px; transition: background 0.3s;">
+    ✉️ Say Hello
+  </a>
+
+  <!-- Live Professional Clock & Greeting -->
+  <div style="margin-top: 15px; padding-top: 15px; border-top: 1px dashed rgba(0,0,0,0.06);">
+    <p id="pro-live-clock" style="font-size: 12px; color: #777; margin: 0;"></p>
   </div>
 
-</div>
-<!-- === START: Live Visitor & Time Widget (Sirf Last me Paste Karein) === -->
-<div style="text-align: center; padding: 25px 0; margin-top: 40px; border-top: 1px solid rgba(0,0,0,0.1); font-family: sans-serif;">
-  
-  <!-- Live Greeting & Time -->
-  <p id="live-greeting" style="font-size: 14px; font-weight: 500; color: #555; margin-bottom: 10px;"></p>
-  
-  <!-- Live Visitor Counter Badge -->
-  <div style="display: inline-block;">
-    <span style="font-size: 12px; color: #777; display: block; margin-bottom: 4px;">👀 Total Portfolio Views</span>
-    <a href="https://github.com/satyam91-42/Personal_portfolio" target="_blank">
-      <img src="https://komarev.com/ghpvc/?username=satyam91-42&color=blueviolet&style=flat-square" alt="Visitor Count" />
-    </a>
-  </div>
+  <!-- Copyright -->
+  <p style="font-size: 12px; color: #888; margin-top: 15px;">
+    &copy; 2026 Satyam Kumar Jha. All rights reserved.
+  </p>
 
-</div>
+</footer>
 
 <script>
-  // Real-time Clock & Greeting Script
-  function updateTime() {
+  // Clean Live Clock & Greeting Script
+  function updateProClock() {
     const now = new Date();
     const hours = now.getHours();
-    let greeting = "";
+    let timeGreeting = "";
 
-    if (hours < 12) greeting = "🌅 Good Morning!";
-    else if (hours < 18) greeting = "☀️ Good Afternoon!";
-    else greeting = "🌙 Good Evening!";
+    if (hours < 12) timeGreeting = "Good Morning";
+    else if (hours < 18) timeGreeting = "Good Afternoon";
+    else timeGreeting = "Good Evening";
 
-    const timeString = now.toLocaleTimeString();
-    document.getElementById("live-greeting").innerHTML = `${greeting} Welcome to my portfolio | 🕒 ${timeString}`;
+    const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    const clockElement = document.getElementById("pro-live-clock");
+    
+    if (clockElement) {
+      clockElement.innerHTML = `${timeGreeting} &bull; Local Time: <span style="font-weight: 500; color: #444;">${timeString}</span>`;
+    }
   }
-  setInterval(updateTime, 1000);
-  updateTime();
+  setInterval(updateProClock, 1000);
+  updateProClock();
 </script>
-<!-- === END WIDGET === -->
+<!-- === END FOOTER WIDGET === -->
 </body>
 
 </html>
