@@ -804,7 +804,7 @@
 
     <!-- Floating AI Chatbot Button & Window -->
 <div id="ai-chat-bubble" onclick="toggleChat()">
-  💬
+  🤖
 </div>
 
 <div id="ai-chat-window" class="chat-hidden">
@@ -818,7 +818,7 @@
   
   <div class="chat-messages" id="chat-messages">
     <div class="bot-msg">
-      Namaste! Main Satyam ka personal portfolio assistant hoon. Aap mujhse unke projects, skills, certifications ya contact info ke baare mein pooch sakte hain!
+     Hello! I'm Satyam's personal portfolio assistant. Feel free to ask me about his projects, technical skills, certifications, or contact information!
     </div>
   </div>
 
@@ -827,56 +827,7 @@
     <button onclick="sendChatMessage()">Send</button>
   </div>
 </div>
-<!-- === START: Professional Footer Widget === -->
-<footer style="text-align: center; padding: 30px 20px; margin-top: 50px; border-top: 1px solid rgba(0,0,0,0.08); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
-  
-  <!-- Thank you & Quick Connect Message -->
-  <p style="font-size: 15px; font-weight: 500; color: #333; margin-bottom: 8px;">
-    🙏 Thanks for visiting my portfolio!
-  </p>
-  <p style="font-size: 13px; color: #666; margin-bottom: 15px;">
-    Have a project in mind or want to connect? Feel free to reach out.
-  </p>
-
-  <!-- Quick Email Button -->
-  <a href="sjha57786@gmail.com" style="display: inline-block; background-color: #007bff; color: #fff; padding: 8px 20px; border-radius: 20px; font-size: 13px; text-decoration: none; font-weight: 500; margin-bottom: 20px; transition: background 0.3s;">
-    ✉️ Say Hello
-  </a>
-
-  <!-- Live Professional Clock & Greeting -->
-  <div style="margin-top: 15px; padding-top: 15px; border-top: 1px dashed rgba(0,0,0,0.06);">
-    <p id="pro-live-clock" style="font-size: 12px; color: #777; margin: 0;"></p>
-  </div>
-
-  <!-- Copyright -->
-  <p style="font-size: 12px; color: #888; margin-top: 15px;">
-    &copy; 2026 Satyam Kumar Jha. All rights reserved.
-  </p>
-
-</footer>
-
-<script>
-  // Clean Live Clock & Greeting Script
-  function updateProClock() {
-    const now = new Date();
-    const hours = now.getHours();
-    let timeGreeting = "";
-
-    if (hours < 12) timeGreeting = "Good Morning";
-    else if (hours < 18) timeGreeting = "Good Afternoon";
-    else timeGreeting = "Good Evening";
-
-    const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-    const clockElement = document.getElementById("pro-live-clock");
     
-    if (clockElement) {
-      clockElement.innerHTML = `${timeGreeting} &bull; Local Time: <span style="font-weight: 500; color: #444;">${timeString}</span>`;
-    }
-  }
-  setInterval(updateProClock, 1000);
-  updateProClock();
-</script>
-<!-- === END FOOTER WIDGET === -->
 </body>
 
 </html>
