@@ -2924,3 +2924,108 @@ body.dark-mode .contact-card .btn-light:hover {
     border-color: #38bdf8 !important;
     transform: translateY(-3px);
 }
+/* ==============================
+   EXTRA MOBILE OPTIMIZATION
+============================== */
+
+@media (max-width: 480px) {
+
+    html {
+        scroll-padding-top: 75px;
+    }
+
+    body {
+        overflow-x: hidden;
+    }
+
+    .container {
+        width: 92%;
+    }
+
+    .section {
+        padding: 55px 0;
+    }
+
+    .logo {
+        font-size: 24px;
+    }
+
+    .hero h1 {
+        font-size: 34px;
+        letter-spacing: -1px;
+    }
+
+    .hero h2 {
+        font-size: 16px;
+    }
+
+    .hero-description {
+        font-size: 13px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .hero-buttons .btn {
+        width: 100%;
+    }
+
+    .profile-image {
+        width: 210px;
+        height: 210px;
+    }
+
+    .image-decoration {
+        width: 235px;
+        height: 235px;
+    }
+
+    .about-card,
+    .timeline-card,
+    .skill-card,
+    .project-card,
+    .achievement-card {
+        padding: 20px;
+    }
+
+    .certifications-grid,
+    .projects-grid,
+    .skills-grid,
+    .achievements-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .certificate-image {
+        height: 200px;
+    }
+
+    .contact-card {
+        padding: 38px 16px;
+    }
+
+    .contact-card h2 {
+        font-size: 27px;
+    }
+
+    .contact-links {
+        flex-wrap: wrap;
+        gap: 18px;
+    }
+
+    #ai-chat-bubble {
+        width: 48px;
+        height: 48px;
+        right: 15px;
+        bottom: 18px;
+    }
+
+    #ai-chat-window {
+        width: calc(100vw - 30px);
+        max-width: none;
+        right: 15px;
+        bottom: 78px;
+        height: min(420px, 65dvh);
+    }
+}
