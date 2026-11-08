@@ -3029,3 +3029,26 @@ body.dark-mode .contact-card .btn-light:hover {
         height: min(420px, 65dvh);
     }
 }
+/* Subtle Scroll Reveal Animation */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition:
+        opacity 0.7s ease,
+        transform 0.7s ease;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
